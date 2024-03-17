@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import { FaGoogle } from "react-icons/fa";
 import { FaApple } from "react-icons/fa";
 import Home from '../assets/Home.png';
+import ThemeContext from '../../ThemeContext';
 
 
 
@@ -47,57 +48,57 @@ const SignUp = () => {
         
     }
 
+    const { selectedTheme } = useContext(ThemeContext);
 
   return (
     <>
-    <div className='flex bg-[#377D81] font-Inter relative'>
-        <div className='w-[35%] h-screen text-white'>
+    <div className='flex font-Inter relative' style = {{background: selectedTheme?.colors?.quartary}}>
+        <div className='w-[35%] h-screen'  style = {{color: selectedTheme.colors.secondary}}>
             <div className='flex flex-col w-full h-[45%] item-strech'>
-                <h1 className='text-6xl font-bold  text-center py-6 mt-10'>aspieByte</h1>
+                <Link to = "/"><h1 className='text-6xl font-bold  text-center py-6 mt-10'>aspieByte</h1></Link>
                 <p className='text-xl font-bold px-10 max-w-[80%] mt-5'> Empowering Minds, Embracing Uniqueness: Your Journey, Your Pace, Our Adaptive Learning Space</p>
             </div>
         </div>    
-        <div className='w-[65%] h-screen bg-[#303030] rounded-l-3xl'>
-            <div className='flex flex-col h-full w-[95%] ml-12'>
-                <form className='my-5 mx-10 p-5 text-[#E5E1DA]' onSubmit={registerUser}>
-                    <h2 className='text-4xl font-bold py-4 ' >Create Account</h2>
-                    <div className='flex py-4 justify-between'>
-                        <input className ='rounded-lg p-2 w-[45%] bg-transparent border-[#CCCCCC]/[0.8] border ' type="text" value = {data.firstName} onChange={(e)=> setData({...data, firstName: e.target.value})}   placeholder = 'First Name'/>
-                        <input className ='rounded-lg p-2 w-[45%] bg-transparent border-[#CCCCCC]/[0.8] border ' type="text" value = {data.lastName} onChange={(e)=> setData({...data, lastName: e.target.value})}   placeholder = 'Last Name'/>
+        <div className='w-[65%] h-screen' style = {{background: selectedTheme.colors.tertiary}}>
+            <div className='flex flex-col h-full w-[90%] ml-12'>
+                <form className='my-5 mx-10 p-5' style = {{color: selectedTheme.colors.secondary}} onSubmit={registerUser}>
+                    <h2 className='text-4xl font-bold py-3 '>Create Account</h2>
+                    <div className='flex py-2 justify-between'>
+                        <input className ='rounded-lg p-2 w-[45%] bg-transparent border-[#CCCCCC]/[0.8] border outline-none ' type="text" value = {data.firstName} onChange={(e)=> setData({...data, firstName: e.target.value})}   placeholder = 'First Name'/>
+                        <input className ='rounded-lg p-2 w-[45%] bg-transparent border-[#CCCCCC]/[0.8] border outline-none' type="text" value = {data.lastName} onChange={(e)=> setData({...data, lastName: e.target.value})}   placeholder = 'Last Name'/>
                     </div>
                     <div className='flex py-2 justify-between'>
-                        <select className ='rounded-lg p-2 w-[45%] bg-transparent border-[#CCCCCC]/[0.8] border' type="text" value = {data.gender} onChange={(e)=> setData({...data, gender: e.target.value})}   placeholder = 'Gender'>
-                            <option className ='rounded-lg p-2 w-[45%] bg-[#303030] border-[#CCCCCC]/[0.8] border' value="">-- Select --</option>
-                            <option className ='rounded-lg p-2 w-[45%] bg-[#303030] border-[#CCCCCC]/[0.8] border' value="male">Male</option>
-                            <option className ='rounded-lg p-2 w-[45%] bg-[#303030] border-[#CCCCCC]/[0.8] border' value="female">Female</option>
+                        <select className ='rounded-lg p-2 w-[45%] bg-transparent border-[#CCCCCC]/[0.8] border outline-none' type="text" value = {data.gender} onChange={(e)=> setData({...data, gender: e.target.value})}   placeholder = 'Gender'>
+                            <option className ='rounded-lg p-2 w-[45%] text-[#303030] dark:text-[#FBF9F1] border-[#CCCCCC]/[0.8] border ' value="">-- Select --</option>
+                            <option className ='rounded-lg p-2 w-[45%] text-[#303030] dark:text-[#FBF9F1] border-[#CCCCCC]/[0.8] border' value="male">Male</option>
+                            <option className ='rounded-lg p-2 w-[45%] text-[#303030] dark:text-[#FBF9F1] border-[#CCCCCC]/[0.8] border' value="female">Female</option>
                         </select>
-                        <input className ='rounded-lg p-2 w-[45%] bg-transparent border-[#CCCCCC]/[0.8] border ' type="text" value = {data.age} onChange={(e)=> setData({...data, age: e.target.value})}   placeholder = 'Age'/>
+                        <input className ='rounded-lg p-2 w-[45%] bg-transparent border-[#CCCCCC]/[0.8] border outline-none' type="text" value = {data.age} onChange={(e)=> setData({...data, age: e.target.value})}   placeholder = 'Age'/>
                     </div>
-                    <div className='py-3'>
-                        <input className ='rounded-lg p-2 w-full bg-transparent border-[#CCCCCC]/[0.8] border ' type="text" value = {data.phoneNumber} onChange={(e)=> setData({...data, phoneNumber: e.target.value})}   placeholder = 'Phone Number'/>
+                    <div className='py-2'>
+                        <input className ='rounded-lg p-2 w-full bg-transparent border-[#CCCCCC]/[0.8] border outline-none' type="text" value = {data.phoneNumber} onChange={(e)=> setData({...data, phoneNumber: e.target.value})}   placeholder = 'Phone Number'/>
                     </div>
-                    <div className='py-3'>
-                        <input className ='rounded-lg p-2 w-full bg-transparent border-[#CCCCCC]/[0.8] border ' type="email" value = {data.email} onChange={(e)=> setData({...data, email: e.target.value})}  placeholder = 'Email'/>
+                    <div className='py-2'>
+                        <input className ='rounded-lg p-2 w-full bg-transparent border-[#CCCCCC]/[0.8] border outline-none' type="email" value = {data.email} onChange={(e)=> setData({...data, email: e.target.value})}  placeholder = 'Email'/>
                     </div>
-                    <div className='py-3'>
-                        <input className ='rounded-lg p-2 w-full bg-transparent border-[#CCCCCC]/[0.8] border ' type="password" value = {data.password} onChange={(e)=> setData({...data, password: e.target.value})}  placeholder = 'Password'/>
+                    <div className='py-2'>
+                        <input className ='rounded-lg p-2 w-full bg-transparent border-[#CCCCCC]/[0.8] border outline-none' type="password" value = {data.password} onChange={(e)=> setData({...data, password: e.target.value})}  placeholder = 'Password'/>
                     </div>
-                    <div className='py-3'>
+                    <div className='py-2'>
                         <input className ='rounded-lg p-2 w-full bg-transparent border-[#CCCCCC]/[0.8] border ' type="password" value = {data.confirmPassword} onChange={(e)=> setData({...data, confirmPassword: e.target.value})}  placeholder = 'Confirm Password'/>    
                     </div>
-                    <button className='rounded-md w-full mt-5 h-[50px] bg-[#377D81]' type = 'submit'>Create Account</button>
+                    <Link to="/guardianSignUp"><button className='rounded-md w-full mt-2 h-[50px] text-2xl dark:bg-[#377D81] bg-[#92C7CF] text-[#FFFFFF] hover:bg-[#377D81]' type = 'submit'>Create Account</button></Link>
                     <div className='flex'>
-                        <p className='px-1'>Already have an account?</p>
-                        <Link><p className='text-[#377D81] underline'>Login</p></Link>
+                        <Link to = '/login'><p className='px-1 hover:text-[#377D81] hover:underline'>Already have an account? Login</p></Link>
                     </div>
-                    <div className='flex py-4 mt-1 justify-between'>
+                    <div className='flex py-2 mt-1 justify-between'>
                         <div className='flex rounded-lg py-3 px-1 w-[45%] bg-transparent border-[#CCCCCC]/[0.8] border justify-center'>
                             <div className='px-3'><FaGoogle size={20}/></div> 
-                            <input className ='border-none outline-none bg-transparent px-2' type="text"  placeholder = 'Sign up with Google'/>
+                            <input className ='border-none outline-none bg-transparent px-2 placeholder-[#717171]' type="text"  placeholder = 'Sign up with Google'/>
                         </div>
                         <div className='flex rounded-lg py-3 w-[45%] bg-transparent border-[#CCCCCC]/[0.8] border justify-center '>
                             <div className='px-3'><FaApple size={20}/></div>  
-                            <input className ='border-none outline-none bg-transparent px-2' type="text"  placeholder = 'Sign up with Apple'/>
+                            <input className ='border-none outline-none bg-transparent px-2 placeholder-[#717171]' type="text"  placeholder = 'Sign up with Apple'/>
                         </div>
                     </div>
                 </form>
@@ -105,7 +106,7 @@ const SignUp = () => {
         </div>
     </div>
     <div className='w-full'>
-        <img className = " w-[300px] h-[350px] absolute bottom-10 left-80" src={Home} alt="Home"/>
+        <img className = " w-[225px] h-[275px] absolute bottom-10 left-80" src={Home} alt="Home"/>
     </div>
     </>
   )
